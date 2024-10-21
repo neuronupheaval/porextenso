@@ -76,14 +76,14 @@
     }
 
     function copy() {
-        navigator.clipboard.writeText($("#result").text());
+        if ($("#result").text()) {
+            navigator.clipboard.writeText($("#result").text());
 
-        $("#result").removeClass("uncopied").addClass("copied");
-        setTimeout(function () {
-            $("#result").removeClass("copied").addClass("uncopied");
-        }, 300);
-
-        return false;
+            $("#result").removeClass("uncopied").addClass("copied");
+            setTimeout(function () {
+                $("#result").removeClass("copied").addClass("uncopied");
+            }, 300);
+        }
     }
 
     function clearNumber() {

@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http.Extensions
+
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       lang="pt-br"
       xmlns:og="http://ogp.me/ns#"
@@ -8,13 +10,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Números por extenso! Informe o número e obtenha-o escrito por extenso, em língua portuguesa!" />
     <meta name="googlebot" content="notranslate" />
-    <meta property="og:title" content="Por Extenso Web" />
+    <meta property="og:title" content="Número Por Extenso" />
+    <meta property="og:site_name" content="Número Por Extenso" />
+    <meta property="og:type" content="website" />
     <meta property="og:description" content="Números por extenso em português" />
-    <meta property="og:image" content="https://numeroporextenso.azurewebsites.net/img/ogimage.png" />
+    <meta property="og:url" content="@Context.Request.GetDisplayUrl()" />
+    <meta property="og:image" itemprop="image" content="@Url.Content("~/img/ogimage.png")" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:updated_time" content="1725736796" />
     <title>@ViewData["Title"] - Por Extenso Web</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/PorExtensoWeb.styles.css" asp-append-version="true" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MEDLXJK50T"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MEDLXJK50T');
+    </script>
 </head>
 <body>
     <header>
@@ -36,11 +51,11 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; @(DateTime.Now.Year) - Sol Poente Tech
+            &copy; @DateTime.Now.Year - Sol Poente Tech
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
