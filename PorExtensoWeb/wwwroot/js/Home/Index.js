@@ -42,8 +42,6 @@ function copy() {
 
 function clearNumber() {
     $("#number").val("");
-    $("#result").removeClass("copied error success").text("");
-    focus();
 }
 
 function pasteNumber() {
@@ -55,13 +53,16 @@ function pasteNumber() {
 }
 
 $(function () {
-    var fireEmpty = false;
+    var fireEmpty = true;
+    var $number = document.getElementById("number");
+    var $jNumber = $("#number");
+
     (function emptyLoop() {
         setTimeout(function () {
-            if (document.getElementById("number").value) {
+            if ($number.value) {
                 fireEmpty = true;
             } else if (fireEmpty) {
-                $("#number").trigger("empty");
+                $jNumber.trigger("empty");
                 fireEmpty = false;
             }
             emptyLoop();
@@ -69,15 +70,22 @@ $(function () {
     })();
 
     $(".showTooltip").tooltip();
-    $("#number").on("input", function (event) {
-        let sanitized = this.value.replace(/[eE+\-.,]/g, "");
-        porextenso(sanitized);
-    }).on("keydown", function (event) {
-        if ((event.key === 'Backspace' || event.keyCode === 8) && this.value.length === 1) {
-            $("#result").removeClass("copied error success");
+
+    $jNumber.on("input", function (event) {
+        if (this.value) {
+            let sanitized = this.value.replace(/\D/g, "");
+            porextenso(sanitized);
+            if (sanitized !== this.value) {
+                this.value = sanitized;
+                // hack
+                this.type = "text";
+                this.setSelectionRange(sanitized.length, sanitized.length);
+                this.type = "number";
+            }
         }
     }).on("empty", function () {
-        $("#result").removeClass("copied error success");
+        $("#result").removeClass("copied error success").text("");
     });
+
     focus();
 });

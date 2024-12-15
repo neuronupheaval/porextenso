@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
 @section Styles
@@ -10,7 +10,7 @@
 <div class="text-center">
     <h1 class="display-4">Bem-vindo(a)!</h1>
     <form class="form" onsubmit="return false;">
-        <label for="number" class="form-label">Informe número <span class="bi bi-question-circle showTooltip" title="O n&uacute;mero n&atilde;o pode ter casas decimais! Depois clique no extenso abaixo, para copi&aacute;-lo."></span> </label>
+        <label for="number" class="form-label">Informe número <span class="bi bi-question-circle showTooltip" title="Gerador de n&uacute;meros por extenso! Digite-o e depois clique no extenso abaixo, para copiar."></span> </label>
         <input type="number" id="number" name="number" class="underlined" required />
         <input type="button" value="Limpar" class="btn btn-danger btn-sm" onclick="clearNumber()" />
         <input type="button" value="&nbsp;Colar&nbsp;" class="btn btn-info btn-sm" onclick="pasteNumber()" />
