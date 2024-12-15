@@ -1,0 +1,39 @@
+﻿#number {
+    width: 29%;
+}
+
+#result {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 30px;
+}
+
+.success {
+    animation: degrade 1s ease-in-out infinite;
+}
+
+.copied {
+    color: ghostwhite;
+    background-color: green;
+}
+
+.error {
+    color: palevioletred;
+    background-color: antiquewhite;
+}
+
+input.underlined {
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 2px solid black;
+}
+
+input.underlined:focus {
+    outline: none;
+}
+
+@keyframes degrade {
+    0% { background-color: lightgreen }
+    100% { background-color: beige }
+}

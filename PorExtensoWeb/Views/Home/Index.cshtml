@@ -2,109 +2,23 @@
     ViewData["Title"] = "Home Page";
 }
 
-<style type="text/css">
-    #number {
-        width: 29%;
-    }
+@section Styles
+{
+<link rel="stylesheet" href="~/css/Home/Index.css?v=@(System.Random.Shared.NextDouble())" />
+}
 
-    #result {
-        margin: 20px;
-        padding: 20px;
-        border-radius: 30px;
-    }
-
-    .uncopied {
-        color: black;
-        background-color: beige;
-    }
-
-    .copied {
-        color: ghostwhite;
-        background-color: seagreen;
-    }
-
-    .error {
-        color: palevioletred;
-        background-color: antiquewhite;
-    }
-
-    input.underlined {
-        border-left: 0;
-        border-top: 0;
-        border-right: 0;
-        border-bottom: 2px solid black;
-    }
-
-    input.underlined:focus {
-        outline: none;
-    }
-</style>
 <div class="text-center">
     <h1 class="display-4">Bem-vindo(a)!</h1>
-    <p>Números por extenso! Digite o número e clique no texto por extenso que surgirá, que ele será copiado para sua área de transferência.</p>
     <form class="form" onsubmit="return false;">
-        <label for="number" class="form-label">Número:</label>
-        <input type="number" id="number" name="number" class="underlined" />
-        <input type="button" value="Limpa" class="btn btn-danger btn-sm" onclick="clearNumber()" />
-        <input type="button" value="&nbsp;Cola&nbsp;" class="btn btn-info btn-sm" onclick="pasteNumber()" />
+        <label for="number" class="form-label">Informe número <span class="bi bi-question-circle showTooltip" title="O n&uacute;mero n&atilde;o pode ter casas decimais! Depois clique no extenso abaixo, para copi&aacute;-lo."></span> </label>
+        <input type="number" id="number" name="number" class="underlined" required />
+        <input type="button" value="Limpar" class="btn btn-danger btn-sm" onclick="clearNumber()" />
+        <input type="button" value="&nbsp;Colar&nbsp;" class="btn btn-info btn-sm" onclick="pasteNumber()" />
     </form>
     <div id="result" onclick="copy()"></div>
 </div>
 
 @section Scripts 
 {
-<script type="text/javascript">
-    function focus() {
-        $("#number").focus();
-    }
-
-    function porextenso(number) {
-        $.ajax({
-            "data": { "number": number },
-            "dataType": "json",
-            "error": function (xhr, status, error) {
-                $("#result").addClass("error").text("---> erro <---");
-            },
-            "method": "post",
-            "success": function (result) {
-                $("#result").text(result);
-                result && $("#result").removeClass("error").addClass("uncopied");
-                !result && $("#result").removeClass("error copied uncopied");
-            }
-        });
-        focus();
-    }
-
-    function copy() {
-        if ($("#result").text()) {
-            navigator.clipboard.writeText($("#result").text());
-
-            $("#result").removeClass("uncopied").addClass("copied");
-            setTimeout(function () {
-                $("#result").removeClass("copied").addClass("uncopied");
-            }, 300);
-        }
-    }
-
-    function clearNumber() {
-        $("#number").val("");
-        $("#result").removeClass("copied uncopied").text("");
-        focus();
-    }
-
-    function pasteNumber() {
-        navigator.clipboard.readText().then((text) => {
-            porextenso(text);
-            $("#number").val(text);
-            focus();
-        });
-    }
-
-    $(function () {
-        $("#number").on("input", function (event) {
-            porextenso(this.value);
-        });
-        focus();
-    });
-</script>
+<script type="text/javascript" src="~/js/Home/Index.js?v=@(System.Random.Shared.NextDouble())"></script>
 }

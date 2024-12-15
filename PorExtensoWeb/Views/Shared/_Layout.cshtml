@@ -19,8 +19,14 @@
     <meta property="og:image:type" content="image/png" />
     <meta property="og:updated_time" content="1725736796" />
     <title>@ViewData["Title"] - Por Extenso Web</title>
+    <link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/jqueryui/themes/sunny/theme.css" />
+    <link rel="stylesheet" href="~/lib/jqueryui/themes/sunny/jquery-ui.css" />
+
+    @await RenderSectionAsync("Styles", required: false)
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MEDLXJK50T"></script>
     <script>
@@ -35,7 +41,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Por Extenso Web</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">N&uacute;mero Por Extenso Web App</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -55,7 +61,9 @@
         </div>
     </footer>
     <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/jqueryui/jquery-ui.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
