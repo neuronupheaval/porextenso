@@ -11,6 +11,10 @@ function focusAndSelect() {
     select();
 }
 
+function sanitize(input) {
+    return input.replace(/\D/g, "");
+}
+
 function porextenso(number) {
     $.ajax({
         "data": { "number": number },
@@ -46,8 +50,9 @@ function clearNumber() {
 
 function pasteNumber() {
     navigator.clipboard.readText().then((text) => {
-        porextenso(text);
-        $("#number").val(text);
+        let sanitized = sanitize(text);
+        porextenso(sanitized);
+        $("#number").val(sanitized);
         focusAndSelect();
     });
 }
@@ -73,19 +78,19 @@ $(function () {
 
     $jNumber.on("input", function (event) {
         if (this.value) {
-            let sanitized = this.value.replace(/\D/g, "");
+            let sanitized = sanitize(this.value);
             porextenso(sanitized);
             if (sanitized !== this.value) {
                 this.value = sanitized;
-                // hack
+                // begin hack
                 this.type = "text";
                 this.setSelectionRange(sanitized.length, sanitized.length);
                 this.type = "number";
+                // end hack
             }
         }
-    }).on("empty", function () {
+    }).on("empty", function (event) {
+        focus();
         $("#result").removeClass("copied error success").text("");
     });
-
-    focus();
 });
