@@ -37,3 +37,11 @@ input.underlined:focus {
     0% { background-color: lightgreen }
     100% { background-color: beige }
 }
+
+.on {
+    display: block;
+}
+
+.off {
+    display: none;
+}

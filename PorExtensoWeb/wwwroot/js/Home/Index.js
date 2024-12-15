@@ -1,5 +1,5 @@
 ﻿function focus() {
-    $("#number").trigger("focus");
+    $("#number").trigger("focus").trigger("click");
 }
 
 function select() {
@@ -13,6 +13,12 @@ function focusAndSelect() {
 
 function sanitize(input) {
     return input.replace(/\D/g, "");
+}
+
+function startButtonClicked() {
+    $("#start").removeClass("on").addClass("off");
+    $("#app").removeClass("off").addClass("on");
+    focus();
 }
 
 function porextenso(number) {
@@ -46,6 +52,7 @@ function copy() {
 
 function clearNumber() {
     $("#number").val("");
+    focus();
 }
 
 function pasteNumber() {
@@ -90,7 +97,6 @@ $(function () {
             }
         }
     }).on("empty", function (event) {
-        focus();
         $("#result").removeClass("copied error success").text("");
     });
 });

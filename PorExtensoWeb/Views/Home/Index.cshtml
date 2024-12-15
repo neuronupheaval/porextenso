@@ -10,10 +10,20 @@
 <div class="text-center">
     <h1 class="display-4">Bem-vindo(a)!</h1>
     <form class="form" onsubmit="return false;">
-        <label for="number" class="form-label">Informe n&uacute;mero <span class="bi bi-question-circle showTooltip" title="Gerador de n&uacute;meros por extenso! Digite-o e depois clique no extenso abaixo, para copiar."></span> </label>
-        <input type="number" id="number" name="number" class="underlined" />
-        <input type="button" value="Limpar" class="btn btn-danger btn-sm showTooltip" onclick="clearNumber()" title="Limpar entrada." />
-        <input type="button" value="&nbsp;Colar&nbsp;" class="btn btn-info btn-sm showTooltip" onclick="pasteNumber()" title="Colar d&iacute;gitos na entrada ao lado." />
+        <div id="start" class="on">
+            <p>
+Este app converte n&uacute;meros para a sua vers&atilde;o por extenso.
+<br />
+Clique no bot&atilde;o abaixo para iniciar a aplica&ccedil;&atilde;o!
+            </p>
+            <input type="button" value="Iniciar" class="btn btn-success" onclick="startButtonClicked()" />
+        </div>
+        <div id="app" class="off">
+            <label for="number" class="form-label">Informe n&uacute;mero <span class="bi bi-question-circle showTooltip" title="Gerador de n&uacute;meros por extenso! Digite-o e depois clique no extenso abaixo, para copiar."></span> </label>
+            <input type="number" id="number" name="number" class="underlined" />
+            <input type="button" value="Limpar" class="btn btn-danger btn-sm showTooltip" onclick="clearNumber()" title="Limpar entrada." />
+            <input type="button" value="&nbsp;Colar&nbsp;" class="btn btn-info btn-sm showTooltip" onclick="pasteNumber()" title="Colar d&iacute;gitos na entrada ao lado." />
+        </div>
     </form>
     <div id="result" onclick="copy()"></div>
 </div>
