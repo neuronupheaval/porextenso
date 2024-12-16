@@ -3,7 +3,7 @@
 }
 
 function select() {
-    document.getElementById("number").select();
+    $("#number").val() && $("#number")[0].select();
 }
 
 function focusAndSelect() {
@@ -16,7 +16,7 @@ function sanitize(input) {
 }
 
 function startButtonClicked() {
-    $("#start").removeClass("on").addClass("off");
+    $("#start").remove();
     $("#app").removeClass("off").addClass("on");
     focus();
 }
@@ -31,9 +31,8 @@ function porextenso(number) {
         },
         "method": "post",
         "success": function (result) {
-            $("#result").text(result);
-            result && $("#result").removeClass("error").addClass("success");
-            !result && $("#result").removeClass("error copied");
+            $("#result").text(result).removeClass("error copied");
+            result && $("#result").addClass("success");
         }
     });
 }
@@ -81,6 +80,20 @@ $(function () {
         }, 80);
     })();
 
+    $.widget("ui.tooltip", $.ui.tooltip, {
+        "options": {
+            "show": {
+                "effect": "fade",
+                "delay": 400
+            },
+            "open": function (event, ui) {
+                var self = this;
+                setTimeout(function () {
+                    $(self).tooltip("close");
+                }, 8500);
+            }
+        }
+    });
     $(".showTooltip").tooltip();
 
     $jNumber.on("input", function (event) {
